@@ -403,7 +403,6 @@ export const CryptQuest: Quest = {
     {
       name: "Bonerdagon",
       after: ["Start", "Alcove Boss", "Cranny Boss", "Niche Boss", "Nook Boss"],
-      prepare: () => cliExecute("kolfix auto"),
       completed: () => step("questL07Cyrptic") >= 1,
       do: () => {
         adv1($location`Haert of the Cyrpt`, -1, "");

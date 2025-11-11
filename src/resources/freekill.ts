@@ -1,5 +1,5 @@
 import { getFuel, Item, Skill } from "kolmafia";
-import { $effect, $item, $items, $skill, get, have } from "libram";
+import { $effect, $item, $items, $skill, BloodCubicZirconia, get, have } from "libram";
 import { asdonFualable, fuelUp } from "../lib";
 import { CombatResource } from "./lib";
 
@@ -48,11 +48,8 @@ export const freekillSources: FreekillSource[] = [
   },
   {
     name: "Sweat Bullets",
-    // eslint-disable-next-line libram/verify-constants
-    available: () => have($item`blood cubic zirconia`) && $skill`BCZ: Sweat Bullets`.timescast < 7,
-    // eslint-disable-next-line libram/verify-constants
+    available: () => have($item`blood cubic zirconia`) && BloodCubicZirconia.availableCasts($skill`BCZ: Sweat Bullets`, 150) > 0,
     do: $skill`BCZ: Sweat Bullets`,
-    // eslint-disable-next-line libram/verify-constants
     equip: $item`blood cubic zirconia`,
   },
   {

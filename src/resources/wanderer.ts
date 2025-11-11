@@ -224,18 +224,28 @@ export const wandererSources: WandererSource[] = [
   },
   {
     name: "Time Cop",
-    // eslint-disable-next-line libram/verify-constants
     available: () => have($item`Möbius ring`) && get("_timeCopsFoughtToday", 0) < 11,
-    // eslint-disable-next-line libram/verify-constants
     equip: $item`Möbius ring`,
     monsters: [
-      // eslint-disable-next-line libram/verify-constants
       $monster`time cop`,
     ],
     chance: () => 0.4 / (1 + Math.exp(-0.3 * (myParadoxicity() - 16))),
-    // eslint-disable-next-line libram/verify-constants
     possible: () => haveEquipped($item`Möbius ring`),
     chainable: true,
+  },
+  {
+    name: "Ewe",
+    available: () => myPath() === $path`11 Things I Hate About U`,
+    equip: [{}],
+    monsters: [
+      $monster`ewe`,
+    ],
+    chance: () => .1 * get("eweItem", "")
+      .split(",")
+      .filter((s) => s !== "")
+      .length,
+    possible: () => get("eweItem", "") !== "",
+    chainable: false,
   },
 ];
 

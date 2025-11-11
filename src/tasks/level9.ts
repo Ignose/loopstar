@@ -25,6 +25,7 @@ import {
   $monster,
   $skill,
   AutumnAton,
+  BloodCubicZirconia,
   ensureEffect,
   get,
   have,
@@ -41,6 +42,14 @@ import { stenchPlanner } from "../engine/outfit";
 import { tryPlayApriling } from "../lib";
 import { trainSetAvailable } from "./misc";
 import { args } from "../args";
+
+function combat(): CombatStrategy {
+  if (BloodCubicZirconia.availableCasts($skill`BCZ: Refracted Gaze`, 100) < 1 || !have($item`Monodent of the Sea`)) {
+    return new CombatStrategy().killItem()
+  }
+  return new CombatStrategy()
+    .macro(new Macro().trySkill($skill`Sea *dent: Talk to Some Fish`).trySkill($skill`BCZ: Refracted Gaze`).attack().repeat());
+}
 
 const ABoo: Task[] = [
   {
@@ -84,10 +93,8 @@ const ABoo: Task[] = [
     completed: () => itemAmount($item`A-Boo clue`) * 30 >= get("booPeakProgress"),
     do: $location`A-Boo Peak`,
     // eslint-disable-next-line libram/verify-constants
-    outfit: { modifier: "item", equip: $items`Space Trip safety headphones, HOA regulation book, blood cubic zirconia` },
-    combat: new CombatStrategy()
-      // eslint-disable-next-line libram/verify-constants
-      .macro(new Macro().trySkill($skill`CLEESH`).trySkill($skill`BCZ: Refracted Gaze`).attack().repeat()),
+    outfit: { modifier: "item", equip: $items`Space Trip safety headphones, HOA regulation book, blood cubic zirconia, monodent of the sea` },
+    combat: combat(),
     orbtargets: () => [],
     choices: { 611: 1, 1430: 1 },
     resources: () => {
@@ -225,9 +232,7 @@ const Twin: Task[] = [
     do: $location`Twin Peak`,
     choices: { 606: 1, 607: 1 },
     outfit: () => stenchPlanner.outfitFor(4, { modifier: "-combat, item" }),
-    combat: new CombatStrategy()
-      // eslint-disable-next-line libram/verify-constants
-      .macro(new Macro().trySkill($skill`CLEESH`).trySkill($skill`BCZ: Refracted Gaze`).attack().repeat()),
+    combat: combat(),
     peridot: $monster`bearpig topiary animal`,
     limit: { soft: 10 },
   },
@@ -256,9 +261,7 @@ const Twin: Task[] = [
     do: $location`Twin Peak`,
     choices: { 606: 2, 608: 1 },
     outfit: { modifier: "item 50min, -combat" },
-    combat: new CombatStrategy()
-      // eslint-disable-next-line libram/verify-constants
-      .macro(new Macro().trySkill($skill`CLEESH`).trySkill($skill`BCZ: Refracted Gaze`).attack().repeat()),
+    combat: combat(),
     peridot: $monster`bearpig topiary animal`,
     limit: { soft: 10 },
   },
@@ -282,9 +285,7 @@ const Twin: Task[] = [
     do: $location`Twin Peak`,
     choices: { 606: 3, 609: 1, 616: 1 },
     outfit: { modifier: "item, -combat" },
-    combat: new CombatStrategy()
-      // eslint-disable-next-line libram/verify-constants
-      .macro(new Macro().trySkill($skill`CLEESH`).trySkill($skill`BCZ: Refracted Gaze`).attack().repeat()),
+    combat: combat(),
     peridot: $monster`bearpig topiary animal`,
     acquire: [{ item: $item`jar of oil` }],
     limit: { soft: 10 },
@@ -316,9 +317,7 @@ const Twin: Task[] = [
     do: $location`Twin Peak`,
     choices: { 606: 4, 610: 1, 1056: 1 },
     outfit: { modifier: "init 40 min, item, -combat" },
-    combat: new CombatStrategy()
-      // eslint-disable-next-line libram/verify-constants
-      .macro(new Macro().trySkill($skill`CLEESH`).trySkill($skill`BCZ: Refracted Gaze`).attack().repeat()),
+    combat: combat(),
     peridot: $monster`bearpig topiary animal`,
     limit: { soft: 10 },
   },
@@ -418,17 +417,9 @@ export const ChasmQuest: Quest = {
             avoid: $items`broken champagne bottle`,
           };
           // eslint-disable-next-line libram/verify-constants
-        } else return { modifier: "sleaze res", equip: $items`combat lover's locket, blood cubic zirconia` };
+        } else return { modifier: "sleaze res", equip: $items`combat lover's locket, blood cubic zirconia, monodent of the sea` };
       },
-      combat: new CombatStrategy()
-        // eslint-disable-next-line libram/verify-constants
-        .macro(new Macro().trySkill($skill`CLEESH`).trySkill($skill`BCZ: Refracted Gaze`).attack().repeat(), [
-          $monster`smut orc jacker`,
-          $monster`smut orc nailer`,
-          $monster`smut orc pipelayer`,
-          $monster`smut orc screwer`,
-        ])
-        .kill(),
+      combat: combat(),
       choices: { 1345: 3 },
       skipprep: () => get("smutOrcNoncombatProgress") >= 15,
       limit: {
