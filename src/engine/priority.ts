@@ -211,9 +211,10 @@ export class Prioritization {
       }
 
       // Consider using a wandering monster
-      const wanderer = wandererSources.find(
-        (source) => source.available() && source.chance() === 1
-      );
+      const wanderer = wandererSources
+        .filter((source) => source.available())
+        .sort((a, b) => b.chance() - a.chance())
+        .find((source) => source.chance() >= 0.3);
       if (wanderer && (!wanderer.fulloutfit || !undelay(task.outfit))) {
         const matchedSpec = canEquipResource(outfit, wanderer);
         if (matchedSpec !== undefined) {

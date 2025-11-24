@@ -29,6 +29,13 @@ export const baseRoute: string[] = [
   // Unlock island to start YRing
   "Misc/Unlock Island Submarine",
   "Misc/Unlock Island",
+  "War/Enrage", // Open the War ASAP for Yellow rays
+  "War/Flyers Start", // Start the war and get flyers
+  "War/Flyers End", // End the flyers quest ASAP in case of tracking errors
+  "War/Junkyard End",
+  "War/Open Nuns",
+  "War/Nuns",
+  "War/Boss Hippie",
 
   // Initial tasks for delay
   "Manor/Kitchen",
@@ -38,9 +45,6 @@ export const baseRoute: string[] = [
   "Manor/Start Floor2",
 
   // First -combat group
-  "War/Enrage", // Open the War ASAP for Yellow rays
-  "War/Flyers Start", // Start the war and get flyers
-  "War/Flyers End", // End the flyers quest ASAP in case of tracking errors
   "Giant/Basement Finish", // Nice big delay zone before manor is opened
   "Crypt/Cranny",
 
@@ -102,8 +106,6 @@ export const baseRoute: string[] = [
   "Palindome/Talisman",
   "Palindome/Palindome Dudes", // Use Eagle beast banish
   "Crypt/Niche",
-  "War/Junkyard End",
-
   "Tavern/Finish",
 
   // Setup for +meat/+item set
@@ -113,11 +115,10 @@ export const baseRoute: string[] = [
   "Macguffin/Upper Chamber",
   "Orc Chasm/Start Peaks",
   "Orc Chasm/ABoo Carto",
-  "War/Open Nuns",
 
   // Bulk +meat/+item tasks
   "Misc/Shadow Lodestone",
-  "War/Nuns",
+
   "Crypt/Nook",
   "Orc Chasm/ABoo Clues",
   "Digital/Hero",
@@ -130,7 +131,7 @@ export const baseRoute: string[] = [
   "Keys/Star Key", // Allow for better use of orb
   "Macguffin/Finish",
   "Crypt/Finish",
-  "War/Boss Hippie",
+
   "Orc Chasm/Finish",
 
   // Finish up with last delay
