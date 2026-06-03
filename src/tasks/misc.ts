@@ -1348,11 +1348,6 @@ export const MiscQuest: Quest = {
       after: ["Leaflet"],
       ready: () => {
         if (!CinchoDeMayo.have()) return false;
-        if (
-          getDwelling() === $item`big rock` &&
-          !have($item`Frobozz Real-Estate Company Instant House (TM)`)
-        )
-          return false;
         if (have($item`forest canopy bed`) || BurningLeaves.numberOfLeaves() < 74) return false;
         if (args.resources.speed) return true;
         // Only when the extra free rests push over the next cincho threshold
@@ -1368,9 +1363,6 @@ export const MiscQuest: Quest = {
       },
       completed: () => "forest canopy bed" in getCampground(),
       do: () => {
-        if (getDwelling() === $item`big rock`) {
-          use($item`Frobozz Real-Estate Company Instant House (TM)`);
-        }
         retrieveItem($item`forest canopy bed`);
         use($item`forest canopy bed`);
       },
@@ -1764,8 +1756,8 @@ function chooseBestLeprecondo(): number[] {
     myPath() === $path`11 Things I Hate About U` && furnitureFound.has(25)
       ? 25
       : furnitureFound.has(13)
-      ? 13
-      : 0; // Sous vide -> meat% and random food
+        ? 13
+        : 0; // Sous vide -> meat% and random food
 
   return [f1, f2, f3, f4];
 }

@@ -756,7 +756,7 @@ export const WarQuest: Quest = {
           }
           return result;
         }),
-      limit: { tries: 10 },
+      limit: { tries: 12 },
     },
     ...Orchard,
     {
@@ -779,7 +779,7 @@ export const WarQuest: Quest = {
         .kill()
         .killHard(warHeroes)
         .macro(Macro.trySkill($skill`Extract Jelly`)),
-      limit: { tries: 9 },
+      limit: { tries: 11 },
     },
     ...Nuns,
     {
@@ -807,7 +807,7 @@ export const WarQuest: Quest = {
         .kill()
         .killHard(warHeroes)
         .macro(Macro.trySkill($skill`Extract Jelly`)),
-      limit: { tries: 30 },
+      limit: { tries: 35 },
     },
     {
       name: "Boss Hippie",

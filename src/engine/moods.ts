@@ -77,7 +77,7 @@ function getRelevantEffects(): { [modifier: string]: Effect[] } {
       myMeat() > 0
         ? $effects`Empathy, Leash of Linguini, Astral Shell, Elemental Saucesphere, Thoughtful Empathy`
         : [],
-    "fam weight": $effects`Chorale of Companionship`,
+    "fam weight": $effects`Chorale of Companionship, Best Pals`,
     init: $effects`Walberg's Dim Bulb, Springy Fusilli, Cletus's Canticle of Celerity, Suspicious Gaze, Song of Slowness`,
     ML: $effects`Ur-Kel's Aria of Annoyance, Pride of the Puffin, Drescher's Annoying Noise`,
     item: $effects`Fat Leon's Phat Loot Lyric, Singer's Faithful Ocelot`,
@@ -116,7 +116,9 @@ function getRelevantEffects(): { [modifier: string]: Effect[] } {
   }
 
   if (myClass() !== $class`Pastamancer`) {
-    result["init"].push($effect`Whispering Strands`);
+    have($item`legendary pasta wand`) ?
+      result["init"].push($effect`Legendary Whispering Strands`)
+      : result["init"].push($effect`Whispering Strands`);
   }
 
   if (

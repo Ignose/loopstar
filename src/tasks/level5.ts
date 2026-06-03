@@ -45,8 +45,8 @@ export const KnobQuest: Quest = {
       skipeffects: true,
       do: $location`The Outskirts of Cobb's Knob`,
       choices: { 111: 3, 113: 2, 118: 1 },
-      limit: { tries: 12 },
-      delay: 10,
+      limit: { tries: 14 },
+      delay: 12,
     },
     {
       name: "Open Knob",

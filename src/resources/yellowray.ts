@@ -51,6 +51,12 @@ export const forceItemSources: ForceItemSource[] = [
     available: () => have($skill`Emotionally Chipped`) && get("_feelEnvyUsed") < 3,
     do: () => Macro.skill($skill`Feel Envy`).step(killMacro()),
   },
+  {
+    name: "Northern Explosion",
+    available: () => have($skill`Northern Explosion`) && have($item`April Shower Thoughts shield`) && !get("_aprilShowerNorthernExplosion"),
+    equip: $item`April Shower Thoughts shield`,
+    do: $skill`Northern Explosion`
+  }
 ];
 
 export function forceItemPossible(): boolean {

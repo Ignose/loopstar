@@ -157,6 +157,13 @@ const banishSources: BanishSource[] = [
     capacity: 3,
   },
   {
+    name: "Heartstone: Banish",
+    available: () => get("heartstoneBanishUnlocked", false) && get("_heartstoneBanishUsed", 0) < 5,
+    do: $skill`Heartstone: %banish`,
+    equip: $item`Heartstone`,
+    free: false,
+  },
+  {
     name: "Batter Up",
     available: () =>
       have($skill`Batter Up!`) && myClass() === $class`Seal Clubber` && myFury() >= 5,
